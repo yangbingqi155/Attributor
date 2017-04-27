@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TextStatsViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *body;
@@ -16,6 +17,14 @@
 
 @implementation ViewController
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"Text Analayze"]){
+        if([segue.destinationViewController isKindOfClass:[TextStatsViewController class]]){
+            TextStatsViewController *textStatsViewController=(TextStatsViewController *)segue.destinationViewController;
+            textStatsViewController.textToAnalysis=self.body.textStorage;
+        }
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
